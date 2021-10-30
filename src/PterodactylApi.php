@@ -22,28 +22,28 @@ class PterodactylApi
      *
      * @var string
      */
-    protected $baseUri;
+    public $baseUri;
 
     /**
      * The Pterodactyl API key.
      *
      * @var string
      */
-    protected $apiKey;
+    public $apiKey;
 
     /**
      * The API type of the API key.
      *
      * @var string
      */
-    protected $apiType;
+    public $apiType;
 
     /**
      * The Http client.
      *
      * @var Http
      */
-    protected $http;
+    public $http;
 
     /**
      * Account manager.
