@@ -1,6 +1,6 @@
 <?php
 
-namespace Timdesm\PterodactylPhpApis\Resources;
+namespace Timdesm\PterodactylPhpApi\Resources;
 
 class Allocation extends Resource
 {
