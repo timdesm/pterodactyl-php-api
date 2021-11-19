@@ -12,6 +12,7 @@ use Timdesm\PterodactylPhpApi\Managers\NestManager;
 use Timdesm\PterodactylPhpApi\Managers\Node\NodeAllocationManager;
 use Timdesm\PterodactylPhpApi\Managers\NodeManager;
 use Timdesm\PterodactylPhpApi\Managers\Server\ServerDatabaseManager;
+use Timdesm\PterodactylPhpApi\Managers\Server\ServerFileManager;
 use Timdesm\PterodactylPhpApi\Managers\ServerManager;
 use Timdesm\PterodactylPhpApi\Managers\UserManager;
 
@@ -109,6 +110,13 @@ class PterodactylApi
     public $server_databases;
 
     /**
+     * Server database manager.
+     *
+     * @var ServerFileManager
+     */
+    public $server_files;
+
+    /**
      * Create a new PterodactylApi instance.
      *
      * @param string             $apiKey
@@ -137,5 +145,6 @@ class PterodactylApi
         $this->account = new AccountManager($this);
         $this->servers = new ServerManager($this);
         $this->server_databases = new ServerDatabaseManager($this);
+        $this->server_files = new ServerFilesManager($this);
     }
 }

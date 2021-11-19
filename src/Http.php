@@ -92,12 +92,12 @@ class Http
      * Make a POST request and return the response.
      *
      * @param string $uri
-     * @param array  $query
-     * @param mixed  $payload
+     * @param array $query
+     * @param $payload
      *
      * @return mixed
      */
-    public function post($uri, array $query = [], mixed $payload = [])
+    public function post($uri, array $query = [], $payload = [])
     {
         return $this->request('POST', $uri, $query, $payload);
     }
@@ -106,12 +106,12 @@ class Http
      * Make a PUT request and return the response.
      *
      * @param string $uri
-     * @param array  $query
-     * @param mixed  $payload
+     * @param array $query
+     * @param $payload
      *
      * @return mixed
      */
-    public function put($uri, array $query = [], mixed $payload = [])
+    public function put($uri, array $query = [], $payload = [])
     {
         return $this->request('PUT', $uri, $query, $payload);
     }
@@ -120,8 +120,8 @@ class Http
      * Make a PATCH request and return the response.
      *
      * @param string $uri
-     * @param array  $query
-     * @param array  $payload
+     * @param array $query
+     * @param array $payload
      *
      * @return mixed
      */
@@ -134,8 +134,8 @@ class Http
      * Make a DELETE request and return the response.
      *
      * @param string $uri
-     * @param array  $query
-     * @param array  $payload
+     * @param array $query
+     * @param array $payload
      *
      * @return mixed
      */
