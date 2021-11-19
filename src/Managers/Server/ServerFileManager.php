@@ -169,7 +169,7 @@ class ServerFileManager extends Manager
      *
      * @return SignedUrl
      */
-    public function upload(int $serverId, $file, array $query = [])
+    public function upload(int $serverId, array $query = [])
     {
         return $this->http->get("servers/$serverId/files/download", $query);
     }
