@@ -93,11 +93,11 @@ class Http
      *
      * @param string $uri
      * @param array  $query
-     * @param array  $payload
+     * @param mixed  $payload
      *
      * @return mixed
      */
-    public function post($uri, array $query = [], array $payload = [])
+    public function post($uri, array $query = [], mixed $payload = [])
     {
         return $this->request('POST', $uri, $query, $payload);
     }
@@ -107,11 +107,11 @@ class Http
      *
      * @param string $uri
      * @param array  $query
-     * @param array  $payload
+     * @param mixed  $payload
      *
      * @return mixed
      */
-    public function put($uri, array $query = [], array $payload = [])
+    public function put($uri, array $query = [], mixed $payload = [])
     {
         return $this->request('PUT', $uri, $query, $payload);
     }
@@ -150,15 +150,18 @@ class Http
      * @param string $method
      * @param string $uri
      * @param array  $query
-     * @param array  $payload
+     * @param mixed  $payload
      *
      * @return mixed
      */
-    public function request($method, $uri, array $query = [], array $payload = [])
+    public function request($method, $uri, array $query = [], mixed $payload = [])
     {
         $uri = $this->baseUri.'/api/'.$this->apiType.'/'.$uri;
 
-        $body = json_encode($payload);
+        $body = $payload;
+        if(is_array($payload))  {
+          $body = json_encode($payload);
+        }
 
         $token = $this->apiKey;
 
