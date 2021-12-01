@@ -11,6 +11,7 @@ use Timdesm\PterodactylPhpApi\Managers\Nest\NestEggManager;
 use Timdesm\PterodactylPhpApi\Managers\NestManager;
 use Timdesm\PterodactylPhpApi\Managers\Node\NodeAllocationManager;
 use Timdesm\PterodactylPhpApi\Managers\NodeManager;
+use Timdesm\PterodactylPhpApi\Managers\Server\ServerBackupManager;
 use Timdesm\PterodactylPhpApi\Managers\Server\ServerDatabaseManager;
 use Timdesm\PterodactylPhpApi\Managers\Server\ServerFileManager;
 use Timdesm\PterodactylPhpApi\Managers\ServerManager;
@@ -103,6 +104,13 @@ class PterodactylApi
     public $servers;
 
     /**
+     * Server backup manager.
+     *
+     * @var ServerBackupManager
+     */
+    public $server_backups;
+
+    /**
      * Server database manager.
      *
      * @var ServerDatabaseManager
@@ -144,7 +152,8 @@ class PterodactylApi
         $this->node_allocations = new NodeAllocationManager($this);
         $this->account = new AccountManager($this);
         $this->servers = new ServerManager($this);
+        $this->server_backups = new ServerBackupManager($this);
         $this->server_databases = new ServerDatabaseManager($this);
-        $this->server_files = new ServerFilesManager($this);
+        $this->server_files = new ServerFileManager($this);
     }
 }

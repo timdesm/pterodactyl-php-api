@@ -149,12 +149,12 @@ class Http
      *
      * @param string $method
      * @param string $uri
-     * @param array  $query
-     * @param mixed  $payload
+     * @param array $query
+     * @param $payload
      *
      * @return mixed
      */
-    public function request($method, $uri, array $query = [], mixed $payload = [])
+    public function request($method, $uri, array $query = [], $payload = [])
     {
         $uri = $this->baseUri.'/api/'.$this->apiType.'/'.$uri;
 

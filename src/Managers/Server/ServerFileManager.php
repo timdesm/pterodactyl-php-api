@@ -123,19 +123,6 @@ class ServerFileManager extends Manager
     }
 
     /**
-     * Decompress the specified file
-     *
-     * @param mixed $serverId
-     * @param array $data
-     *
-     * @return void
-     */
-    public function decompress($serverId, $data)
-    {
-        return $this->http->post("servers/$serverId/files/decompress", [], $data);
-    }
-
-    /**
      * Delete the specified file(s) or folder(s)
      *
      * @param mixed $serverId
