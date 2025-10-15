@@ -14,6 +14,8 @@ use Timdesm\PterodactylPhpApi\Managers\NodeManager;
 use Timdesm\PterodactylPhpApi\Managers\Server\ServerBackupManager;
 use Timdesm\PterodactylPhpApi\Managers\Server\ServerDatabaseManager;
 use Timdesm\PterodactylPhpApi\Managers\Server\ServerFileManager;
+use Timdesm\PterodactylPhpApi\Managers\Server\ServerScheduleManager;
+use Timdesm\PterodactylPhpApi\Managers\Server\ServerSubuserManager;
 use Timdesm\PterodactylPhpApi\Managers\ServerManager;
 use Timdesm\PterodactylPhpApi\Managers\UserManager;
 
@@ -118,11 +120,25 @@ class PterodactylApi
     public $server_databases;
 
     /**
-     * Server database manager.
+     * Server files manager.
      *
      * @var ServerFileManager
      */
     public $server_files;
+
+    /**
+     * Server schedule manager.
+     *
+     * @var ServerScheduleManager
+     */
+    public $server_schedules;
+
+    /**
+     * Server subuser manager.
+     *
+     * @var ServerSubuserManager
+     */
+    public $server_subusers;
 
     /**
      * Create a new PterodactylApi instance.
@@ -155,5 +171,7 @@ class PterodactylApi
         $this->server_backups = new ServerBackupManager($this);
         $this->server_databases = new ServerDatabaseManager($this);
         $this->server_files = new ServerFileManager($this);
+        $this->server_schedules = new ServerScheduleManager($this);
+        $this->server_subusers = new ServerSubuserManager($this);
     }
 }

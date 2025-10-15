@@ -50,7 +50,7 @@ class ServerBackupManager extends Manager
      */
     public function download($serverId, $backupId, array $query = [])
     {
-        return $this->http->get("servers/$serverId/backups/$backupId", $query);
+        return $this->http->get("servers/$serverId/backups/$backupId/download", $query);
     }
 
     /**
@@ -61,7 +61,7 @@ class ServerBackupManager extends Manager
      *
      * @return void
      */
-    public function create($serverId, $data)
+    public function create($serverId, array $data = [])
     {
         return $this->http->post("servers/$serverId/backups", [], $data);
     }
@@ -71,12 +71,12 @@ class ServerBackupManager extends Manager
      *
      * @param mixed $serverId
      * @param string $backupId
-     * @param array $data
+     * @param bool  $force
      *
      * @return void
      */
-    public function delete($serverId, $backupId, $data)
+    public function delete($serverId, $backupId, $force = false)
     {
-        return $this->http->delete("servers/$serverId/backups/$backupId", [], $data);
+        return $this->http->delete("servers/$serverId/backups/$backupId", ['force' => $force]);
     }
 }

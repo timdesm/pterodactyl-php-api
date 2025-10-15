@@ -232,14 +232,14 @@ class ServerManager extends Manager
     }
 
     /**
-    * Backup a specified server
-    *
-    * @param string $serverId
-    *
-    * @return array
-    */
-     public function backup(string $serverId)
-     {
-         return $this->http->post("servers/$serverId/backup");
-     }
+     * Backup a specified server
+     *
+     * @param string $serverId
+     *
+     * @return array
+     */
+    public function backup(string $serverId, array $data = [])
+    {
+        return $this->pterodactyl->server_backups->create($serverId, $data);
+    }
 }
