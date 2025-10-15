@@ -156,19 +156,23 @@ class Http
      */
     public function request($method, $uri, array $query = [], $payload = [])
     {
-        $uri = $this->baseUri.'/api/'.$this->apiType.'/'.$uri;
+        $uri = $this->buildUri($uri);
 
-        $body = $payload;
-        if(is_array($payload))  {
-          $body = json_encode($payload);
+        $options = [
+            'query'   => $this->sanitizeQuery($query),
+            'debug'   => false,
+            'headers' => [
+                'Authorization' => 'Bearer '.$this->apiKey,
+            ],
+        ];
+
+        if ($payload !== [] && $payload !== null) {
+            if (is_array($payload)) {
+                $options['json'] = $payload;
+            } else {
+                $options['body'] = $payload;
+            }
         }
-
-        $token = $this->apiKey;
-
-        $options['query'] = $query;
-        $options['body'] = $body;
-        $options['debug'] = false;
-        $options['headers']['Authorization'] = 'Bearer '.$token;
 
         $response = $this->guzzle->request($method, $uri, $options);
 
@@ -179,6 +183,42 @@ class Http
         $responseBody = (string) $response->getBody();
 
         return $this->transform(json_decode($responseBody, true)) ?: $responseBody;
+    }
+
+    /**
+     * Build the full URI for a request.
+     *
+     * @param string $uri
+     *
+     * @return string
+     */
+    protected function buildUri($uri)
+    {
+        if (strpos($uri, 'http') === 0) {
+            return $uri;
+        }
+
+        $uri = ltrim($uri, '/');
+
+        if (strpos($uri, 'api/') === 0) {
+            return rtrim($this->baseUri, '/').'/'.$uri;
+        }
+
+        return rtrim($this->baseUri, '/').'/api/'.$this->apiType.'/'.$uri;
+    }
+
+    /**
+     * Remove null values from query parameters.
+     *
+     * @param array $query
+     *
+     * @return array
+     */
+    protected function sanitizeQuery(array $query)
+    {
+        return array_filter($query, function ($value) {
+            return $value !== null;
+        });
     }
 
     /**
