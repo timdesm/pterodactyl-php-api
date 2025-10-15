@@ -17,7 +17,7 @@ You can install the Pterodactyl PHP API into your project using [Composer](https
 $ composer require timdesm/pterodactyl-php-api
 ```
 
-This project requires PHP version `5.6.4` or `later`.
+This project requires PHP version `7.2.5` or `later`.
 
 ## Usage
 

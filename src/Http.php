@@ -3,6 +3,7 @@
 namespace Timdesm\PterodactylPhpApi;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use Timdesm\PterodactylPhpApi\Exceptions\AccessDeniedHttpException;
 use Timdesm\PterodactylPhpApi\Exceptions\FailedActionException;
 use Timdesm\PterodactylPhpApi\Exceptions\NotFoundException;
@@ -43,7 +44,7 @@ class Http
     /**
      * The GuzzleHttp client.
      *
-     * @var Client
+     * @var ClientInterface
      */
     protected $guzzle;
 
@@ -54,7 +55,13 @@ class Http
      */
     public $timeout = 30;
 
-    public function __construct(PterodactylApi $pterodactyl, Client $guzzle = null)
+    /**
+     * Create a new HTTP transport instance.
+     *
+     * @param PterodactylApi             $pterodactyl
+     * @param ClientInterface|null       $guzzle
+     */
+    public function __construct(PterodactylApi $pterodactyl, ?ClientInterface $guzzle = null)
     {
         $this->pterodactyl = $pterodactyl;
 
