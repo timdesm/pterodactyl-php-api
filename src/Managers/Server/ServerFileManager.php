@@ -97,6 +97,19 @@ class ServerFileManager extends Manager
     }
 
     /**
+     * Update permissions for the specified files.
+     *
+     * @param mixed $serverId
+     * @param array $data
+     *
+     * @return void
+     */
+    public function chmod($serverId, array $data)
+    {
+        return $this->http->post("servers/$serverId/files/chmod", [], $data);
+    }
+
+    /**
      * Compress the specified file(s)
      *
      * @param mixed $serverId
@@ -158,6 +171,19 @@ class ServerFileManager extends Manager
      */
     public function upload(int $serverId, array $query = [])
     {
-        return $this->http->get("servers/$serverId/files/download", $query);
+        return $this->http->get("servers/$serverId/files/upload", $query);
+    }
+
+    /**
+     * Pull a remote file onto the server.
+     *
+     * @param mixed $serverId
+     * @param array $data
+     *
+     * @return void
+     */
+    public function pull($serverId, array $data)
+    {
+        return $this->http->post("servers/$serverId/files/pull", [], $data);
     }
 }
